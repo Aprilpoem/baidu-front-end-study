@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>form</title>
+	<script>
+	  function check_name(){
+	  	    var name =document.getElementById("name");
+            var re = /^.{4,16}$/;
+            if(!re.test(name.value)){
+            document.getElementById("warning0").innerHTML="必填，长度为4到16个字符";
+	  		name.focus();
+	  		return;
+            }
+	  }
+	  function checkinput(){
+	  	var name = document.getElementById("username");
+	  	if(name.value ==  null || name.value == ""){
+	  		document.getElementById("showwarning").innerHTML="名字不能为空";
+	  		name.focus();
+	  		return false;
+	  	}
+	  }
+	  function check_companyname(){
+	  	var re = /^[\u4e00-\u9fa5\w]+$/;
+	  	var name =document.getElementById("companyname");
+	  	if(re.test(name.value)){
+          document.getElementById("warning1").innerHTML="名称格式正确";
+	  	  name.focus();
+	  		return false;
+         }
+
+	  }
+	</script>
+</head>
+<body>
+	<from>
+	<b>name</b>
+	<input type="text" name="name" id="name"/>
+	<!--<input type="submit" name="click" value="验证" /><br/>-->
+	<input type="button" id="button" value="验证" onclick="check_name()"></input>
+	<p id="warning0" style="color:gray"></p>
+	</from>
+	
+	<form onsubmit="return checkinput();" method = "post" >
+	<b>Username</b>
+	<input type="text" name="name" id="username"/>
+	<input type="submit" name="click" value="验证" />
+	<p id="showwarning" style="color:red"></p>
+	</form>
+	<form onsubmit="return check_companyname();" method = "post" >
+	<b>名称</b>
+	<input type="text" name="name" id="companyname"/>
+	<input type="submit" name="click" value="验证" /><br/>
+	<p style="color:green" id ="warning1"></p>
+	</from>
+</body>
+</html>
